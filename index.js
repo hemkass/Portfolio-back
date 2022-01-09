@@ -16,13 +16,13 @@ const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 app.post("/form", (req, res) => {
   console.log("Route /form");
 
-  const { firstname, lastname, email, message } = req.fields;
+  const { firstname, lastname, email, message, telephone } = req.fields;
   /* CREATION DE L'OBJET DATA */
   const data = {
-    from: `${req.fields.firstname} ${req.fields.lastname} ${req.fields.telephone} <${req.fields.email}>`,
-    to: "marinecorbel@yahoo.fr",
+    from: `${firstname} ${lastname} ${telephone} <${email}>`,
+    to: "heimkass64@gmail.com",
     subject: "Formulaire rempli",
-    text: `${req.fields.message}`,
+    text: `${message}`,
   };
   console.log(data);
   mailgun.messages().send(data, (error, body) => {
