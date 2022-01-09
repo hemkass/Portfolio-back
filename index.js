@@ -11,6 +11,10 @@ app.use(formidable());
 const api_key = process.env.api_key;
 const domain = process.env.domain;
 
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome on my portfolio app" });
+});
+
 const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
 
 app.post("/form", (req, res) => {
@@ -36,6 +40,11 @@ app.post("/form", (req, res) => {
     }
   });
 });
+
+
+
+app.all("*", (req, res) => {
+  res.json("All routes");
 
 app.listen(process.env.PORT, () => {
   console.log("server started");
