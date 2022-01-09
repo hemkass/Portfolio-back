@@ -41,10 +41,9 @@ app.post("/form", (req, res) => {
   });
 });
 
-
-
 app.all("*", (req, res) => {
   res.json("All routes");
+});
 
 app.listen(process.env.PORT, () => {
   console.log("server started");
